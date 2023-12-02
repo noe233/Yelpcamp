@@ -1,0 +1,30 @@
+body{
+    height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1682685797769-481b48222adf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.cover-container{
+     max-width: 60vw;
+}
+.nav-link{
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0.25rem 0;
+    font-weight: 700;
+    margin-left: 1rem;
+    border-bottom: 0.25rem solid transparent;
+}
+.nav-link:hover{
+    color:rgba(255, 255, 255, 0.5);
+    border-bottom-color: rgba(255, 255, 255, 0.5);
+
+}
+.nav-link.active{
+    color: #fff;
+    border-bottom-color: #fff;
+}
+.btn-secondary,.btn-secondary:hover{
+    color: #333;
+
+}
