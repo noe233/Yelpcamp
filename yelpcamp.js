@@ -21,11 +21,19 @@ const MongoStore = require("connect-mongo");
 
 const dbUrl = process.env.DB_URL;
 // 'mongodb://localhost:27017/yelpcamp'
-mongoose.connect(dbUrl, {
+/* mongoose.connect(dbUrl, {
     useNewUrlParser: true,
-    /* useCreateIndex: true, */
+    
     useUnifiedTopology: true
-});
+}); */
+
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDB connected');
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+  });
 
 
 const db = mongoose.connection;
