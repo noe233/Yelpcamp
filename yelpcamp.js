@@ -17,6 +17,10 @@ const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
 const User = require('./models/user')
 
+const MongoStore = require("connect-mongo");
+
+//const dbUrl = process.env.db_url;
+// 'mongodb://localhost:27017/yelpcamp'
 mongoose.connect('mongodb://localhost:27017/yelpcamp', {
     useNewUrlParser: true,
     /* useCreateIndex: true, */
@@ -44,7 +48,19 @@ const LocalStrtegy = require('passport-local')
     app.use(flash());
   });
  */
+
+const dbUrl = 'mongodb://localhost:27017/yelpcamp';
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+            secret: 'thisshouldbeabettersecret!'
+        }
+     });
+
 const sessionConfig = {
+    store,
+    name: 'session',
     secret: 'thisisasecret',
     resave: false, 
     saveUninitialized: true, 
