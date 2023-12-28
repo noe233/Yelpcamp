@@ -16,12 +16,12 @@ const userRoutes = require('./routes/users')
 const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
 const User = require('./models/user')
-
+const secret = process.env.SECRET || 'thisisasecret';
 const MongoStore = require("connect-mongo");
 
-//const dbUrl = process.env.db_url;
+const dbUrl = process.env.db_url;
 // 'mongodb://localhost:27017/yelpcamp'
-mongoose.connect('mongodb://localhost:27017/yelpcamp', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     /* useCreateIndex: true, */
     useUnifiedTopology: true
@@ -49,19 +49,19 @@ const LocalStrtegy = require('passport-local')
   });
  */
 
-const dbUrl = 'mongodb://localhost:27017/yelpcamp';
+//const dbUrl = 'mongodb://localhost:27017/yelpcamp';
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-            secret: 'thisshouldbeabettersecret!'
+            secret
         }
      });
 
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thisisasecret',
+    secret,
     resave: false, 
     saveUninitialized: true, 
 }
